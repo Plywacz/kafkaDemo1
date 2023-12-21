@@ -1,6 +1,6 @@
 ### CQRS System Design with Java/Spring and Apache Kafka
 
-[System design chart](/representation.png)
+![System design chart](/representation.png)
 
 ### Understanding CQRS
 
