@@ -1,0 +1,7 @@
+package com.plywacz.commandmicroservice.event.type;
+
+public enum EventType {
+    UPDATE_PRODUCT,
+    CREATE_PRODUCT,
+    DELETE_PRODUCT
+}
