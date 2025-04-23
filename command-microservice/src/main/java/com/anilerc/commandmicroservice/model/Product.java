@@ -1,18 +1,19 @@
 package com.anilerc.commandmicroservice.model;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "PRODUCT_COMMAND")
+import java.util.UUID;
+
+@Document(collection = "products")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private Long id;
+    private String id;
     private String name;
     private double price;
 
-    public Product( String name, double price) {
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
     }
@@ -21,7 +22,7 @@ public class Product {
 
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
