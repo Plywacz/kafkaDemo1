@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService {
-
     private final ProductRepository productRepository;
     private final KafkaTemplate<EventType, Object> kafkaTemplate;
 
@@ -19,13 +18,11 @@ public class ProductService {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-
     public void addProduct(ProductDto productDto) {
-        Product newProduct = new Product(productDto.name(), productDto.price());
+        final var newProduct = new Product(productDto.name(), productDto.price());
         productRepository.save(newProduct);
-        ProductEvent creationEvent = new ProductEvent(EventType.CREATE_PRODUCT, newProduct);
+        final var creationEvent = new ProductEvent(EventType.CREATE_PRODUCT, newProduct);
         kafkaTemplate.send("product-event-topic", creationEvent);
     }
-
 
 }

@@ -21,9 +21,9 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> addProduct(@Valid @RequestBody ProductDto productDto) {
+    public ResponseEntity<String> addProduct(@Valid @RequestBody ProductDto productDto) {
         productService.addProduct(productDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>("Product created", HttpStatus.CREATED);
     }
 
 }

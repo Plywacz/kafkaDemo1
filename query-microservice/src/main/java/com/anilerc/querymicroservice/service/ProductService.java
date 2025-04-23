@@ -3,7 +3,6 @@ package com.anilerc.querymicroservice.service;
 import com.anilerc.querymicroservice.dto.ProductDto;
 import com.anilerc.querymicroservice.event.ProductEvent;
 import com.anilerc.querymicroservice.event.ProductEventType;
-import com.anilerc.querymicroservice.model.Product;
 import com.anilerc.querymicroservice.repository.ProductRepository;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class ProductService {
 
     @KafkaListener(topics = "product-event-topic", groupId = "product-event-group")
     public void processProductEvents(ProductEvent productEvent) {
-        Product incomingProduct = productEvent.getProduct();
+        final var incomingProduct = productEvent.getProduct();
         switch (productEvent.getEventType()) {
             case ProductEventType.CREATE_PRODUCT -> productRepository.save(incomingProduct);
             // Other mutation types can be processed as well!
